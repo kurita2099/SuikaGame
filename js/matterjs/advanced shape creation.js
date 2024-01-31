@@ -42,13 +42,17 @@ class Example extends Phaser.Scene
         {
             fruit_.x = pointer.x;
         }, this);
+       //くだもの同士のあたり
         this.matter.world.on('collisionstart', function (event) {
               event.pairs.forEach(function(item){
                     if(item.bodyA.label == item.bodyB.label){
-                        alert(item.bodyA.label);
-                    }                 
-              });
-        },this)
+                     //消す
+                        item.bodyA.gameObject.destroy()
+                        item.bodyB.gameObject.destroy()
+
+                    }   
+                   // console.log(item.bodyA.label+"."+item.bodyB.label)              
+              }.bind(this));
 
     }
 }
